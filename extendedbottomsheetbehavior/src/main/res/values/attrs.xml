@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExtendedBottomSheetBehavior">
+        <attr name="hideable" format="boolean"/>
+        <attr name="peekHeight" format="dimension"/>
+        <attr name="skipCollapsed" format="boolean"/>
+        <attr name="halfOffset" format="dimension"/>
+    </declare-styleable>
+</resources>

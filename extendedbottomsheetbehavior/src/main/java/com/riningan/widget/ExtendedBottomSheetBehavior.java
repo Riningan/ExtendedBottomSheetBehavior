@@ -166,7 +166,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
 
     private boolean mTouchingScrollingChild;
 
-    private boolean mAllowUserDragging = true;
+    private boolean mAllowUserDragging;
 
     /**
      * Default constructor for instantiating BottomSheetBehaviors.
@@ -191,6 +191,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         }
         setHideable(a.getBoolean(R.styleable.ExtendedBottomSheetBehavior_hideable, false));
         mHalfOffset = a.getDimensionPixelSize(R.styleable.ExtendedBottomSheetBehavior_halfOffset, 0);
+        mAllowUserDragging = a.getBoolean(R.styleable.ExtendedBottomSheetBehavior_allowDragging, true);
         setSkipCollapsed(a.getBoolean(R.styleable.ExtendedBottomSheetBehavior_skipCollapsed, false));
         a.recycle();
         ViewConfiguration configuration = ViewConfiguration.get(context);
@@ -383,7 +384,11 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
                 } else {
                     consumed[1] = currentTop - mMaxOffset;
                     ViewCompat.offsetTopAndBottom(child, -consumed[1]);
-                    setStateInternal(STATE_COLLAPSED);
+                    if (currentTop < mHalfOffset) {
+                        setStateInternal(STATE_HALF);
+                    } else {
+                        setStateInternal(STATE_COLLAPSED);
+                    }
                 }
             }
         }
@@ -432,8 +437,13 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
                 targetState = STATE_COLLAPSED;
             }
         } else {
-            top = mMaxOffset;
-            targetState = STATE_COLLAPSED;
+            if (child.getTop() < mHalfOffset) {
+                top = mHalfOffset;
+                targetState = STATE_HALF;
+            } else {
+                top = mMaxOffset;
+                targetState = STATE_COLLAPSED;
+            }
         }
         if (mViewDragHelper.smoothSlideViewTo(child, child.getLeft(), top)) {
             setStateInternal(STATE_SETTLING);
@@ -454,12 +464,21 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
 
 
     /**
-     * Allow draging
+     * Allow dragging.
      *
-     * @param allowUserDragging
+     * @param
      */
     public void setAllowUserDragging(boolean allowUserDragging) {
         mAllowUserDragging = allowUserDragging;
+    }
+
+    /**
+     * Is allow dragging.
+     *
+     * @return
+     */
+    public boolean isAllowUserDragging() {
+        return mAllowUserDragging;
     }
 
     /**

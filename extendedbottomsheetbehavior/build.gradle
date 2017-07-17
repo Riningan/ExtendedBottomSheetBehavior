@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/Riningan/ExtendedBottomSheetBehavior'
     gitUrl = 'https://github.com/Riningan/ExtendedBottomSheetBehavior.git'
 
-    libraryVersion = '1.0'
+    libraryVersion = '1.1'
 
     developerId = 'Riningan'
     developerName = 'Vadim Akhmarov'
@@ -32,7 +32,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

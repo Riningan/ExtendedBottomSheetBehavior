@@ -1,5 +1,5 @@
 # ExtendedBottomSheetBehavior
-Extends Google BottomSheetBehavior. 
+Extends Google BottomSheetBehavior.
 Adds new state bettween STATE_EXPANDED and STATE_COLLAPSED.
 
 DEMO

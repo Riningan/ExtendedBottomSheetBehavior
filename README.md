@@ -1,5 +1,6 @@
 # ExtendedBottomSheetBehavior
-Extends Google BottomSheetBehavior. Adds new state bettween STATE_EXPANDED and STATE_COLLAPSED.
+Extends Google BottomSheetBehavior. 
+Adds new state bettween STATE_EXPANDED and STATE_COLLAPSED.
 
 DEMO
 ---
@@ -41,6 +42,9 @@ All properties from Google BottomSheetBehavior including same new:
 
 * `app:halfOffset`              (dimension)    -> default 0
 * `app:allowDragging`           (boolean)      -> default true
+
+`halfOffset` starts from top 
+`peekHeight` starts from bottom 
 
 JAVA
 -----

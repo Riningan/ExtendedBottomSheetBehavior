@@ -1,18 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
     tools:context="com.riningan.extendedbottomsheetbehaviorproject.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnHide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hide" />
+
+        <Button
+            android:id="@+id/btnCollapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collapse" />
+
+        <Button
+            android:id="@+id/btnHalf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Half" />
+
+        <Button
+            android:id="@+id/btnExpand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expand" />
+
+        <Button
+            android:id="@+id/btnDragging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disable dragging" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_green_light"
+        android:clipToPadding="true"
+        app:allowDragging="true"
+        app:halfOffset="172dp"
+        app:hideable="true"
+        app:layout_behavior="com.riningan.widget.ExtendedBottomSheetBehavior"
+        app:peekHeight="128dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

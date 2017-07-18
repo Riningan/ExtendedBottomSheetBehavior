@@ -18,7 +18,7 @@ Add dependencies in build.gradle of your module.
 
 ```groovy
 	dependencies {
-		compile 'com.riningan.widget:extendedbottomsheetbehavior:1.0'
+		compile 'com.riningan.widget:extendedbottomsheetbehavior:1.1'
 	}
 ```
 

@@ -1,4 +1,7 @@
 # ExtendedBottomSheetBehavior
+
+[ ![Download](https://api.bintray.com/packages/riningan/AndroidMaven/ExtendedBottomSheetBehavior/images/download.svg) ](https://bintray.com/riningan/AndroidMaven/ExtendedBottomSheetBehavior/_latestVersion)
+
 Extends Google BottomSheetBehavior.
 
 Adds new state bettween STATE_EXPANDED and STATE_COLLAPSED.

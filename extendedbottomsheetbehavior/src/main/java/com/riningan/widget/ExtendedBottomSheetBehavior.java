@@ -43,7 +43,6 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * Copyright All rights reserved.
  */
 
-@SuppressWarnings("unused")
 public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayout.Behavior<V> {
 
     /**
@@ -203,12 +202,12 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
 
 
     @Override
-    public Parcelable onSaveInstanceState(CoordinatorLayout parent, V child) {
+    public Parcelable onSaveInstanceState(@NonNull CoordinatorLayout parent, @NonNull V child) {
         return new ExtendedBottomSheetBehavior.SavedState(super.onSaveInstanceState(parent, child), mState);
     }
 
     @Override
-    public void onRestoreInstanceState(CoordinatorLayout parent, V child, Parcelable state) {
+    public void onRestoreInstanceState(@NonNull CoordinatorLayout parent, @NonNull V child, @NonNull Parcelable state) {
         ExtendedBottomSheetBehavior.SavedState ss = (ExtendedBottomSheetBehavior.SavedState) state;
         super.onRestoreInstanceState(parent, child, ss.getSuperState());
         // Intermediate states are restored as collapsed state
@@ -220,7 +219,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public boolean onLayoutChild(CoordinatorLayout parent, V child, int layoutDirection) {
+    public boolean onLayoutChild(@NonNull CoordinatorLayout parent, @NonNull V child, int layoutDirection) {
         if (ViewCompat.getFitsSystemWindows(parent) && !ViewCompat.getFitsSystemWindows(child)) {
             ViewCompat.setFitsSystemWindows(child, true);
         }
@@ -260,7 +259,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public boolean onInterceptTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
+    public boolean onInterceptTouchEvent(@NonNull CoordinatorLayout parent, @NonNull V child, @NonNull MotionEvent event) {
         if (!mAllowUserDragging) {
             return false;
         }
@@ -313,7 +312,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public boolean onTouchEvent(CoordinatorLayout parent, V child, MotionEvent event) {
+    public boolean onTouchEvent(@NonNull CoordinatorLayout parent, @NonNull V child, @NonNull MotionEvent event) {
         if (!mAllowUserDragging) {
             return false;
         }
@@ -323,6 +322,9 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         int action = MotionEventCompat.getActionMasked(event);
         if (mState == STATE_DRAGGING && action == MotionEvent.ACTION_DOWN) {
             return true;
+        }
+        if (mViewDragHelper == null) {
+            return false;
         }
         mViewDragHelper.processTouchEvent(event);
         // Record the velocity
@@ -344,7 +346,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, V child, View directTargetChild, View target, int nestedScrollAxes) {
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View directTargetChild, @NonNull View target, int nestedScrollAxes) {
         if (!mAllowUserDragging) {
             return false;
         }
@@ -354,7 +356,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, V child, View target, int dx, int dy, int[] consumed) {
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target, int dx, int dy, @NonNull int[] consumed) {
         if (!mAllowUserDragging) {
             return;
         }
@@ -401,7 +403,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, V child, View target) {
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target) {
         if (!mAllowUserDragging) {
             return;
         }
@@ -458,7 +460,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     }
 
     @Override
-    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, V child, View target, float velocityX, float velocityY) {
+    public boolean onNestedPreFling(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V child, @NonNull View target, float velocityX, float velocityY) {
         if (!mAllowUserDragging) {
             return false;
         }
@@ -695,7 +697,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
     private final ViewDragHelper.Callback mDragCallback = new ViewDragHelper.Callback() {
 
         @Override
-        public boolean tryCaptureView(View child, int pointerId) {
+        public boolean tryCaptureView(@NonNull View child, int pointerId) {
             if (mState == STATE_DRAGGING) {
                 return false;
             }
@@ -713,7 +715,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         }
 
         @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+        public void onViewPositionChanged(@NonNull View changedView, int left, int top, int dx, int dy) {
             dispatchOnSlide(top);
         }
 
@@ -725,7 +727,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         }
 
         @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+        public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
             int top;
             @ExtendedBottomSheetBehavior.State int targetState;
             if (yvel < 0) { // Moving up
@@ -756,7 +758,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         }
 
         @Override
-        public int clampViewPositionVertical(View child, int top, int dy) {
+        public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
             int high = mHideable ? mParentHeight : mMaxOffset;
             return top < mMinOffset ? mMinOffset : (top > high ? high : top);
         }
@@ -767,7 +769,7 @@ public class ExtendedBottomSheetBehavior<V extends View> extends CoordinatorLayo
         }
 
         @Override
-        public int getViewVerticalDragRange(View child) {
+        public int getViewVerticalDragRange(@NonNull View child) {
             if (mHideable) {
                 return mParentHeight - mMinOffset;
             } else {

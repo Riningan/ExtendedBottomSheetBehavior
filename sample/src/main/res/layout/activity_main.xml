@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
-    tools:context="com.riningan.extendedbottomsheetbehaviorproject.MainActivity">
+    tools:context="com.riningan.extendedbottomsheetbehavior.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

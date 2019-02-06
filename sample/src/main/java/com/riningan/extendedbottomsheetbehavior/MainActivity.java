@@ -1,4 +1,4 @@
-package com.riningan.extendedbottomsheetbehaviorproject;
+package com.riningan.extendedbottomsheetbehavior;
 
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;

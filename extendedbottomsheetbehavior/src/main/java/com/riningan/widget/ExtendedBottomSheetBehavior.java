@@ -26,11 +26,14 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.riningan.widget.extendedbottomsheetbehavior.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
 
 /**
  * Created by Vadim Akhmarov on 17.07.2017.
